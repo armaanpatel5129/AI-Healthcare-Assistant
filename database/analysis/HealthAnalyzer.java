@@ -75,6 +75,10 @@ public class HealthAnalyzer {
         test("fever, vomiting", "2 days", "MODERATE");
         test("cough", "5 days", "MILD");
         test("chest pain", "1 hour", "SEVERE");
+        test("high fever", "1 day", "MILD");
+        test("stroke symptoms", "2 hours", "MILD");
+        test("sore throat", "2 days", "MILD");
+        test("sore throat", "1 week", "MILD");
     }
 
     static void test(String s, String d, String sev) {
