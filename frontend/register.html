@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | HealthAI</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-shell">
+    <div class="auth-brand">
+      <div class="logo">✚</div>
+      <h1>Health<span>AI</span></h1>
+      <p>Your intelligent companion for understanding symptoms and maintaining health records.</p>
+      <div class="feature-list">
+        <div>✓ Personalized health profile</div>
+        <div>✓ Symptom-based analysis</div>
+        <div>✓ Track your health history</div>
+      </div>
+    </div>
+    <div class="auth-card">
+      <div class="mobile-logo"><div class="logo">✚</div><b>Health<span>AI</span></b></div>
+      <h2>Create your account</h2>
+      <p class="muted">Start your personalized health journey.</p>
+      <form id="registerForm">
+        <label>Full name</label>
+        <input id="regName" type="text" placeholder="Your full name" required>
+        <label>Email</label>
+        <input id="regEmail" type="email" placeholder="you@example.com" required>
+        <label>Password</label>
+        <input id="regPassword" type="password" minlength="6" placeholder="Minimum 6 characters" required>
+        <button class="btn primary full" type="submit">Create Account →</button>
+      </form>
+      <p class="auth-switch">Already have an account? <a href="index.html">Sign in</a></p>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

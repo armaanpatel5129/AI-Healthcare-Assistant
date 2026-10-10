@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthAI | Intelligent Healthcare Assistant</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-shell">
+    <div class="auth-brand">
+      <div class="logo">✚</div>
+      <h1>Health<span>AI</span></h1>
+      <p>Intelligent healthcare guidance, personalized for you.</p>
+      <div class="feature-list">
+        <div>✓ Smart symptom analysis</div>
+        <div>✓ Personalized health guidance</div>
+        <div>✓ Secure health history</div>
+      </div>
+    </div>
+    <div class="auth-card">
+      <div class="mobile-logo"><div class="logo">✚</div><b>Health<span>AI</span></b></div>
+      <h2>Welcome back</h2>
+      <p class="muted">Sign in to continue to your health dashboard.</p>
+      <form id="loginForm">
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com" required>
+        <label>Password</label>
+        <div class="password-wrap">
+          <input id="loginPassword" type="password" placeholder="Enter password" required>
+          <button type="button" class="eye" onclick="togglePassword('loginPassword')">◉</button>
+        </div>
+        <button class="btn primary full" type="submit">Sign In →</button>
+      </form>
+      <p class="auth-switch">Don't have an account? <a href="register.html">Create one</a></p>
+      <p class="demo-note">Demo: any valid email + password works.</p>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

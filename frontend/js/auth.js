@@ -1,0 +1,3 @@
+function togglePassword(id){const x=document.getElementById(id);x.type=x.type==="password"?"text":"password";}
+document.getElementById("loginForm")?.addEventListener("submit",e=>{e.preventDefault();const email=document.getElementById("loginEmail").value;localStorage.setItem("healthUser",JSON.stringify({name:email.split("@")[0],email}));location.href="dashboard.html";});
+document.getElementById("registerForm")?.addEventListener("submit",e=>{e.preventDefault();const name=document.getElementById("regName").value,email=document.getElementById("regEmail").value;localStorage.setItem("healthUser",JSON.stringify({name,email}));localStorage.setItem("healthProfile",JSON.stringify({name,email}));location.href="dashboard.html";});
