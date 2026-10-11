@@ -1,3 +1,24 @@
 function togglePassword(id){const x=document.getElementById(id);x.type=x.type==="password"?"text":"password";}
-document.getElementById("loginForm")?.addEventListener("submit",e=>{e.preventDefault();const email=document.getElementById("loginEmail").value;localStorage.setItem("healthUser",JSON.stringify({name:email.split("@")[0],email}));location.href="dashboard.html";});
-document.getElementById("registerForm")?.addEventListener("submit",e=>{e.preventDefault();const name=document.getElementById("regName").value,email=document.getElementById("regEmail").value;localStorage.setItem("healthUser",JSON.stringify({name,email}));localStorage.setItem("healthProfile",JSON.stringify({name,email}));location.href="dashboard.html";});
+document.getElementById("loginForm")?.addEventListener("submit",async e=>{
+  e.preventDefault();
+  try{
+    const auth=await apiRequest("/auth/login",{method:"POST",body:{
+      email:document.getElementById("loginEmail").value,
+      password:document.getElementById("loginPassword").value
+    }});
+    storeAuth(auth);
+    location.href="dashboard.html";
+  }catch(error){alert(error.message);}
+});
+document.getElementById("registerForm")?.addEventListener("submit",async e=>{
+  e.preventDefault();
+  try{
+    const auth=await apiRequest("/auth/register",{method:"POST",body:{
+      name:document.getElementById("regName").value,
+      email:document.getElementById("regEmail").value,
+      password:document.getElementById("regPassword").value
+    }});
+    storeAuth(auth);
+    location.href="dashboard.html";
+  }catch(error){alert(error.message);}
+});

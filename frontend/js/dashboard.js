@@ -3,12 +3,15 @@ function getUser() {
 }
 
 function requireAuth() {
-  if (!localStorage.getItem("healthUser")) {
+  if (!getAuthToken()) {
     location.href = "index.html";
+    return false;
   }
+  return true;
 }
 
 function logout() {
+  localStorage.removeItem("healthToken");
   localStorage.removeItem("healthUser");
   location.href = "index.html";
 }
@@ -32,8 +35,8 @@ function topbar(title) {
   const initial = (u.name || "G").charAt(0).toUpperCase();
   return `
   <div class="topbar">
-    <h1>${title}</h1>
-    <div class="user-pill"><span class="avatar">${initial}</span>${u.name}</div>
+    <h1>${escapeHTML(title)}</h1>
+    <div class="user-pill"><span class="avatar">${escapeHTML(initial)}</span>${escapeHTML(u.name)}</div>
   </div>`;
 }
 
@@ -74,6 +77,9 @@ document.getElementById("app").innerHTML = nav("dashboard") + `
   </div>
 </main>`;
 
-const history = JSON.parse(localStorage.getItem("healthHistory") || "[]");
-document.getElementById("analyses").textContent = history.length;
-document.getElementById("records").textContent = localStorage.getItem("healthProfile") ? "1" : "0";
+apiRequest("/dashboard")
+  .then(summary => {
+    document.getElementById("analyses").textContent = summary.analysisCount;
+    document.getElementById("records").textContent = summary.profileSaved ? "1" : "0";
+  })
+  .catch(error => alert(error.message));

@@ -5,7 +5,7 @@ MySQL is a relational database. Our data (users, profiles, symptoms, results)
 is connected, so tables with relationships fit well.
 
 ## Tables
-1. users - stores login details (name, email, password).
+1. users - stores the name, email, and BCrypt password hash.
 2. health_profiles - one profile per user (age, height, allergies, etc.).
 3. symptom_records - every time a user enters symptoms, one row is saved.
 4. analysis_results - the analyzer's answer (risk level, guidance, warning) for one symptom record.
@@ -16,6 +16,7 @@ is connected, so tables with relationships fit well.
 - symptom_records -> analysis_results (one symptom record has one result)
 ## Foreign Keys
 - health_profiles.user_id -> users.id
+- health_profiles.user_id is unique, enforcing one profile per user.
 - symptom_records.user_id -> users.id
 - analysis_results.symptom_record_id -> symptom_records.id
 ON DELETE CASCADE is used, so deleting a user also deletes their related data.
