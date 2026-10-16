@@ -10,11 +10,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     private final AuthInterceptor authInterceptor;
     private final String allowedOrigins;
 
-    public WebConfig(AuthInterceptor authInterceptor,
-                     @Value("${app.cors.allowed-origins}") String allowedOrigins) {
+    public WebConfig(
+            AuthInterceptor authInterceptor,
+            @Value("${app.cors.allowed-origins}") String allowedOrigins) {
         this.authInterceptor = authInterceptor;
         this.allowedOrigins = allowedOrigins;
     }
@@ -23,18 +25,25 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/auth/register", "/api/auth/login");
+                .excludePathPatterns(
+                        "/api/auth/register",
+                        "/api/auth/login"
+                );
     }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins(Arrays.stream(allowedOrigins.split(","))
-                        .map(String::trim)
-                        .filter(origin -> !origin.isEmpty())
-                        .toArray(String[]::new))
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("Authorization", "Content-Type")
+                .allowedOriginPatterns(
+                        Arrays.stream(allowedOrigins.split(","))
+                                .map(String::trim)
+                                .filter(origin -> !origin.isEmpty())
+                                .toArray(String[]::new)
+                )
+                .allowedMethods(
+                        "GET", "POST", "PUT", "DELETE", "OPTIONS"
+                )
+                .allowedHeaders("*")
                 .maxAge(3600);
     }
 }
